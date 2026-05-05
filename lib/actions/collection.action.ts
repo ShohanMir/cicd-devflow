@@ -7,14 +7,9 @@ import { Collection, Question } from "@/database";
 
 import action from "../handlers/action";
 import handleError from "../handlers/error";
-import {
-  CollectionBaseSchema,
-  PaginatedSearchParamsSchema,
-} from "../validations";
+import { CollectionBaseSchema, PaginatedSearchParamsSchema } from "../validations";
 
-export async function toggleSaveQuestion(
-  params: CollectionBaseParams
-): Promise<ActionResponse<{ saved: boolean }>> {
+export async function toggleSaveQuestion(params: CollectionBaseParams): Promise<ActionResponse<{ saved: boolean }>> {
   const validationResult = await action({
     params,
     schema: CollectionBaseSchema,
@@ -59,9 +54,7 @@ export async function toggleSaveQuestion(
   }
 }
 
-export async function hasSavedQuestion(
-  params: CollectionBaseParams
-): Promise<ActionResponse<{ saved: boolean }>> {
+export async function hasSavedQuestion(params: CollectionBaseParams): Promise<ActionResponse<{ saved: boolean }>> {
   const validationResult = await action({
     params,
     schema: CollectionBaseSchema,
@@ -166,10 +159,7 @@ export async function getSavedQuestions(params: PaginatedSearchParams): Promise<
       });
     }
 
-    const [totalCount] = await Collection.aggregate([
-      ...pipeline,
-      { $count: "count" },
-    ]);
+    const [totalCount] = await Collection.aggregate([...pipeline, { $count: "count" }]);
 
     pipeline.push({ $sort: sortCriteria });
     pipeline.push({ $skip: skip });

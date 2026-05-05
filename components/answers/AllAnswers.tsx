@@ -14,23 +14,12 @@ interface Props extends ActionResponse<Answer[]> {
   totalAnswers: number;
 }
 
-const AllAnswers = ({
-  page,
-  data,
-  isNext,
-  success,
-  error,
-  totalAnswers,
-}: Props) => {
+const AllAnswers = ({ page, data, isNext, success, error, totalAnswers }: Props) => {
   return (
     <div className="mt-11">
       <div className="flex flex-wrap items-center justify-between gap-5">
         <h3 className="primary-text-gradient">{totalAnswers} Answers</h3>
-        <CommonFilter
-          filters={AnswerFilters}
-          otherClasses="sm:min-w-36"
-          containerClasses="max-xs:w-full"
-        />
+        <CommonFilter filters={AnswerFilters} otherClasses="sm:min-w-36" containerClasses="max-xs:w-full" />
       </div>
 
       <DataRenderer

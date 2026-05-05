@@ -7,10 +7,7 @@ import { Question, Tag } from "@/database";
 import action from "../handlers/action";
 import handleError from "../handlers/error";
 import dbConnect from "../mongoose";
-import {
-  GetTagQuestionsSchema,
-  PaginatedSearchParamsSchema,
-} from "../validations";
+import { GetTagQuestionsSchema, PaginatedSearchParamsSchema } from "../validations";
 
 export async function getTags(params: PaginatedSearchParams): Promise<
   ActionResponse<{
@@ -61,10 +58,7 @@ export async function getTags(params: PaginatedSearchParams): Promise<
   try {
     const totalTags = await Tag.countDocuments(filterQuery);
 
-    const tags = await Tag.find(filterQuery)
-      .sort(sortCriteria)
-      .skip(skip)
-      .limit(limit);
+    const tags = await Tag.find(filterQuery).sort(sortCriteria).skip(skip).limit(limit);
 
     const isNext = totalTags > skip + tags.length;
 

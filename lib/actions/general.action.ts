@@ -37,16 +37,11 @@ export async function globalSearch(params: GlobalSearchParams) {
     if (!typeLower || !SearchableTypes.includes(typeLower)) {
       // If no type is specified, search in all models
       for (const { model, searchField, type } of modelsAndTypes) {
-        const queryResults = await model
-          .find({ [searchField]: regexQuery })
-          .limit(2);
+        const queryResults = await model.find({ [searchField]: regexQuery }).limit(2);
 
         results.push(
           ...queryResults.map((item) => ({
-            title:
-              type === "answer"
-                ? `Answers containing ${query}`
-                : item[searchField],
+            title: type === "answer" ? `Answers containing ${query}` : item[searchField],
             type,
             id: type === "answer" ? item.question : item._id,
           }))
@@ -60,15 +55,10 @@ export async function globalSearch(params: GlobalSearchParams) {
         throw new Error("Invalid search type");
       }
 
-      const queryResults = await modelInfo.model
-        .find({ [modelInfo.searchField]: regexQuery })
-        .limit(8);
+      const queryResults = await modelInfo.model.find({ [modelInfo.searchField]: regexQuery }).limit(8);
 
       results = queryResults.map((item) => ({
-        title:
-          type === "answer"
-            ? `Answers containing ${query}`
-            : item[modelInfo.searchField],
+        title: type === "answer" ? `Answers containing ${query}` : item[modelInfo.searchField],
         type,
         id: type === "answer" ? item.question : item._id,
       }));

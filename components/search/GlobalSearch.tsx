@@ -65,18 +65,9 @@ const GlobalSearch = () => {
   }, [search, pathname, router, searchParams, query]);
 
   return (
-    <div
-      className="relative w-full max-w-[600px] max-lg:hidden"
-      ref={searchContainerRef}
-    >
+    <div className="relative w-full max-w-[600px] max-lg:hidden" ref={searchContainerRef}>
       <div className="background-light800_darkgradient relative flex min-h-[56px] grow items-center gap-1 rounded-xl px-4">
-        <Image
-          src="/icons/search.svg"
-          alt="search"
-          width={24}
-          height={24}
-          className="cursor-pointer"
-        />
+        <Image src="/icons/search.svg" alt="search" width={24} height={24} className="cursor-pointer" />
 
         <Input
           type="text"

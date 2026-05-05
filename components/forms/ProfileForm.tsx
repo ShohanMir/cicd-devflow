@@ -8,14 +8,7 @@ import { useForm } from "react-hook-form";
 import * as z from "zod";
 
 import { Button } from "@/components/ui/button";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import ROUTES from "@/constants/routes";
 import { toast } from "@/hooks/use-toast";
@@ -68,10 +61,7 @@ const ProfileForm = ({ user }: Params) => {
 
   return (
     <Form {...form}>
-      <form
-        onSubmit={form.handleSubmit(handleUpdateProfile)}
-        className="mt-9 flex w-full flex-col gap-9"
-      >
+      <form onSubmit={form.handleSubmit(handleUpdateProfile)} className="mt-9 flex w-full flex-col gap-9">
         <FormField
           control={form.control}
           name="name"
@@ -117,9 +107,7 @@ const ProfileForm = ({ user }: Params) => {
           name="portfolio"
           render={({ field }) => (
             <FormItem className="space-y-3.5">
-              <FormLabel className="paragraph-semibold text-dark400_light800">
-                Portfolio Link
-              </FormLabel>
+              <FormLabel className="paragraph-semibold text-dark400_light800">Portfolio Link</FormLabel>
               <FormControl>
                 <Input
                   type="url"
@@ -175,11 +163,7 @@ const ProfileForm = ({ user }: Params) => {
         />
 
         <div className="mt-7 flex justify-end">
-          <Button
-            type="submit"
-            className="primary-gradient w-fit"
-            disabled={isPending}
-          >
+          <Button type="submit" className="primary-gradient w-fit" disabled={isPending}>
             {isPending ? (
               <>
                 <ReloadIcon className="mr-2 h-4 w-4 animate-spin" />

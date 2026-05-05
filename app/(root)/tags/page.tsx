@@ -33,10 +33,7 @@ const TagsPage = async ({ searchParams }: RouteParams) => {
           otherClasses="flex-1"
         />
 
-        <CommonFilter
-          filters={TagFilters}
-          otherClasses="min-h-[56px] sm:min-w-[170px]"
-        />
+        <CommonFilter filters={TagFilters} otherClasses="min-h-[56px] sm:min-w-[170px]" />
       </section>
 
       <DataRenderer
@@ -53,11 +50,7 @@ const TagsPage = async ({ searchParams }: RouteParams) => {
         )}
       />
 
-      <Pagination
-        page={page}
-        isNext={isNext || false}
-        containerClasses="mt-10"
-      />
+      <Pagination page={page} isNext={isNext || false} containerClasses="mt-10" />
     </>
   );
 };

@@ -50,11 +50,7 @@ const Page = async ({ params, searchParams }: RouteParams) => {
         )}
       />
 
-      <Pagination
-        page={page}
-        isNext={isNext || false}
-        containerClasses="mt-10"
-      />
+      <Pagination page={page} isNext={isNext || false} containerClasses="mt-10" />
     </>
   );
 };

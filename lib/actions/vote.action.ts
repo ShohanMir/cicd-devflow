@@ -9,17 +9,10 @@ import Vote from "@/database/vote.model";
 
 import action from "../handlers/action";
 import handleError from "../handlers/error";
-import {
-  CreateVoteSchema,
-  HasVotedSchema,
-  UpdateVoteCountSchema,
-} from "../validations";
+import { CreateVoteSchema, HasVotedSchema, UpdateVoteCountSchema } from "../validations";
 import { createInteraction } from "./interaction.action";
 
-async function updateVoteCount(
-  params: UpdateVoteCountParams,
-  session?: ClientSession
-): Promise<ActionResponse> {
+async function updateVoteCount(params: UpdateVoteCountParams, session?: ClientSession): Promise<ActionResponse> {
   const validationResult = await action({
     params,
     schema: UpdateVoteCountSchema,
@@ -35,11 +28,7 @@ async function updateVoteCount(
   const voteField = voteType === "upvote" ? "upvotes" : "downvotes";
 
   try {
-    const result = await Model.findByIdAndUpdate(
-      targetId,
-      { $inc: { [voteField]: change } },
-      { new: true, session }
-    );
+    const result = await Model.findByIdAndUpdate(targetId, { $inc: { [voteField]: change } }, { new: true, session });
 
     if (!result) throw new Error("Failed to update vote count");
 
@@ -49,9 +38,7 @@ async function updateVoteCount(
   }
 }
 
-export async function createVote(
-  params: CreateVoteParams
-): Promise<ActionResponse> {
+export async function createVote(params: CreateVoteParams): Promise<ActionResponse> {
   const validationResult = await action({
     params,
     schema: CreateVoteSchema,
@@ -99,11 +86,7 @@ export async function createVote(
         );
       } else {
         // If user is changing their vote, update voteType and adjust counts
-        await Vote.findByIdAndUpdate(
-          existingVote._id,
-          { voteType },
-          { new: true, session }
-        );
+        await Vote.findByIdAndUpdate(existingVote._id, { voteType }, { new: true, session });
         await updateVoteCount(
           {
             targetId,
@@ -170,9 +153,7 @@ export async function createVote(
   }
 }
 
-export async function hasVoted(
-  params: HasVotedParams
-): Promise<ActionResponse<HasVotedResponse>> {
+export async function hasVoted(params: HasVotedParams): Promise<ActionResponse<HasVotedResponse>> {
   const validationResult = await action({
     params,
     schema: HasVotedSchema,

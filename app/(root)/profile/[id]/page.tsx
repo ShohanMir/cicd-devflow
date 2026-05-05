@@ -14,13 +14,7 @@ import ProfileLink from "@/components/user/ProfileLink";
 import Stats from "@/components/user/Stats";
 import UserAvatar from "@/components/UserAvatar";
 import { EMPTY_ANSWERS, EMPTY_QUESTION, EMPTY_TAGS } from "@/constants/states";
-import {
-  getUser,
-  getUserAnswers,
-  getUserQuestions,
-  getUserStats,
-  getUserTopTags,
-} from "@/lib/actions/user.action";
+import { getUser, getUserAnswers, getUserQuestions, getUserStats, getUserTopTags } from "@/lib/actions/user.action";
 
 const ProfilePage = async ({ params, searchParams }: RouteParams) => {
   const { id } = await params;
@@ -37,9 +31,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
     return (
       <div className="flex flex-col items-center justify-center gap-4">
         <h1 className="h1-bold text-dark100_light900">User not found</h1>
-        <p className="paragraph-regular text-dark200_light800 max-w-md">
-          {error?.message}
-        </p>
+        <p className="paragraph-regular text-dark200_light800 max-w-md">{error?.message}</p>
       </div>
     );
 
@@ -91,37 +83,17 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
 
           <div className="mt-3">
             <h2 className="h2-bold text-dark100_light900">{user.name}</h2>
-            <p className="paragraph-regular text-dark200_light800">
-              @{user.username}
-            </p>
+            <p className="paragraph-regular text-dark200_light800">@{user.username}</p>
 
             <div className="mt-5 flex flex-wrap items-center justify-start gap-5">
-              {user.portfolio && (
-                <ProfileLink
-                  imgUrl="/icons/link.svg"
-                  href={user.portfolio}
-                  title="Portfolio"
-                />
-              )}
+              {user.portfolio && <ProfileLink imgUrl="/icons/link.svg" href={user.portfolio} title="Portfolio" />}
 
-              {user.location && (
-                <ProfileLink
-                  imgUrl="/icons/location.svg"
-                  title={user.location}
-                />
-              )}
+              {user.location && <ProfileLink imgUrl="/icons/location.svg" title={user.location} />}
 
-              <ProfileLink
-                imgUrl="/icons/calendar.svg"
-                title={dayjs(user.createdAt).format("MMMM YYYY")}
-              />
+              <ProfileLink imgUrl="/icons/calendar.svg" title={dayjs(user.createdAt).format("MMMM YYYY")} />
             </div>
 
-            {user?.bio && (
-              <p className="paragraph-regular text-dark400_light800 mt-8">
-                {user.bio}
-              </p>
-            )}
+            {user?.bio && <p className="paragraph-regular text-dark400_light800 mt-8">{user.bio}</p>}
           </div>
         </div>
 
@@ -154,10 +126,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
             </TabsTrigger>
           </TabsList>
 
-          <TabsContent
-            value="top-posts"
-            className="mt-5 flex w-full flex-col gap-6"
-          >
+          <TabsContent value="top-posts" className="mt-5 flex w-full flex-col gap-6">
             <DataRenderer
               success={userQuestionsSuccess}
               error={userQuestionsError}
@@ -169,9 +138,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
                     <QuestionCard
                       key={question._id}
                       question={question}
-                      showActionBtns={
-                        loggedInUser?.user?.id === question.author._id
-                      }
+                      showActionBtns={loggedInUser?.user?.id === question.author._id}
                     />
                   ))}
                 </div>
@@ -196,9 +163,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
                       content={answer.content.slice(0, 270)}
                       containerClasses="card-wrapper rounded-[10px] px-7 py-9 sm:px-11"
                       showReadMore
-                      showActionBtns={
-                        loggedInUser?.user?.id === answer.author._id
-                      }
+                      showActionBtns={loggedInUser?.user?.id === answer.author._id}
                     />
                   ))}
                 </div>
@@ -221,14 +186,7 @@ const ProfilePage = async ({ params, searchParams }: RouteParams) => {
               render={(tags) => (
                 <div className="mt-3 flex w-full flex-col gap-4">
                   {tags.map((tag) => (
-                    <TagCard
-                      key={tag._id}
-                      _id={tag._id}
-                      name={tag.name}
-                      questions={tag.count}
-                      showCount
-                      compact
-                    />
+                    <TagCard key={tag._id} _id={tag._id} name={tag.name} questions={tag.count} showCount compact />
                   ))}
                 </div>
               )}

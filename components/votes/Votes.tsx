@@ -16,13 +16,7 @@ interface Params {
   hasVotedPromise: Promise<ActionResponse<HasVotedResponse>>;
 }
 
-const Votes = ({
-  targetType,
-  targetId,
-  upvotes,
-  downvotes,
-  hasVotedPromise,
-}: Params) => {
+const Votes = ({ targetType, targetId, upvotes, downvotes, hasVotedPromise }: Params) => {
   const session = useSession();
   const userId = session?.data?.user?.id;
 
@@ -66,8 +60,7 @@ const Votes = ({
       toast({
         title: successMessage,
         variant:
-          (voteType === "upvote" && hasUpvoted) ||
-          (voteType === "downvote" && hasDownvoted)
+          (voteType === "upvote" && hasUpvoted) || (voteType === "downvote" && hasDownvoted)
             ? "destructive"
             : "default",
       });
@@ -86,9 +79,7 @@ const Votes = ({
     <div className="flex-center gap-2.5">
       <div className="flex-center gap-1.5">
         <Image
-          src={
-            success && hasUpvoted ? "/icons/upvoted.svg" : "/icons/upvote.svg"
-          }
+          src={success && hasUpvoted ? "/icons/upvoted.svg" : "/icons/upvote.svg"}
           width={18}
           height={18}
           alt="upvote"
@@ -98,19 +89,13 @@ const Votes = ({
         />
 
         <div className="flex-center background-light700_dark400 min-w-5 rounded-sm p-1">
-          <p className="subtle-medium text-dark400_light900">
-            {formatNumber(upvotes)}
-          </p>
+          <p className="subtle-medium text-dark400_light900">{formatNumber(upvotes)}</p>
         </div>
       </div>
 
       <div className="flex-center gap-1.5">
         <Image
-          src={
-            success && hasDownvoted
-              ? "/icons/downvoted.svg"
-              : "/icons/downvote.svg"
-          }
+          src={success && hasDownvoted ? "/icons/downvoted.svg" : "/icons/downvote.svg"}
           width={18}
           height={18}
           alt="downvote"
@@ -120,9 +105,7 @@ const Votes = ({
         />
 
         <div className="flex-center background-light700_dark400 min-w-5 rounded-sm p-1">
-          <p className="subtle-medium text-dark400_light900">
-            {formatNumber(downvotes)}
-          </p>
+          <p className="subtle-medium text-dark400_light900">{formatNumber(downvotes)}</p>
         </div>
       </div>
     </div>

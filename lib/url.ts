@@ -14,10 +14,7 @@ export function formUrlQuery({ params, key, value }: UrlQueryParams) {
   );
 }
 
-export function removeKeysFromQuery({
-  params,
-  keysToRemove,
-}: RemoveUrlQueryParams) {
+export function removeKeysFromQuery({ params, keysToRemove }: RemoveUrlQueryParams) {
   const currentUrl = qs.parse(params);
 
   keysToRemove.forEach((key) => {

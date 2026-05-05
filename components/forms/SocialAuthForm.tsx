@@ -23,10 +23,7 @@ const SocialAuthForm = () => {
 
       toast({
         title: "Sign-in Failed",
-        description:
-          error instanceof Error
-            ? error.message
-            : "An error occurred during sign-in.",
+        description: error instanceof Error ? error.message : "An error occurred during sign-in.",
         variant: "destructive",
       });
     }
@@ -46,13 +43,7 @@ const SocialAuthForm = () => {
       </Button>
 
       <Button className={buttonClass} onClick={() => handleSignIn("google")}>
-        <Image
-          src="/icons/google.svg"
-          alt="Google icon"
-          width={20}
-          height={20}
-          className="mr-2.5 object-contain"
-        />
+        <Image src="/icons/google.svg" alt="Google icon" width={20} height={20} className="mr-2.5 object-contain" />
         <span>Login with Google</span>
       </Button>
     </div>

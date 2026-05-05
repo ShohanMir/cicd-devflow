@@ -10,16 +10,10 @@ import Answer, { IAnswerDoc } from "@/database/answer.model";
 
 import action from "../handlers/action";
 import handleError from "../handlers/error";
-import {
-  AnswerServerSchema,
-  DeleteAnswerSchema,
-  GetAnswersSchema,
-} from "../validations";
+import { AnswerServerSchema, DeleteAnswerSchema, GetAnswersSchema } from "../validations";
 import { createInteraction } from "./interaction.action";
 
-export async function createAnswer(
-  params: CreateAnswerParams
-): Promise<ActionResponse<IAnswerDoc>> {
+export async function createAnswer(params: CreateAnswerParams): Promise<ActionResponse<IAnswerDoc>> {
   const validationResult = await action({
     params,
     schema: AnswerServerSchema,
@@ -143,9 +137,7 @@ export async function getAnswers(params: GetAnswersParams): Promise<
   }
 }
 
-export async function deleteAnswer(
-  params: DeleteAnswerParams
-): Promise<ActionResponse> {
+export async function deleteAnswer(params: DeleteAnswerParams): Promise<ActionResponse> {
   const validationResult = await action({
     params,
     schema: DeleteAnswerSchema,
@@ -163,15 +155,10 @@ export async function deleteAnswer(
     const answer = await Answer.findById(answerId);
     if (!answer) throw new Error("Answer not found");
 
-    if (answer.author.toString() !== user?.id)
-      throw new Error("You're not allowed to delete this answer");
+    if (answer.author.toString() !== user?.id) throw new Error("You're not allowed to delete this answer");
 
     // reduce the question answers count
-    await Question.findByIdAndUpdate(
-      answer.question,
-      { $inc: { answers: -1 } },
-      { new: true }
-    );
+    await Question.findByIdAndUpdate(answer.question, { $inc: { answers: -1 } }, { new: true });
 
     // delete votes associated with answer
     await Vote.deleteMany({ actionId: answerId, actionType: "answer" });

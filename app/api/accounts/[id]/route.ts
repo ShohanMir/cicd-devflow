@@ -6,10 +6,7 @@ import { NotFoundError, ValidationError } from "@/lib/http-errors";
 import dbConnect from "@/lib/mongoose";
 import { AccountSchema } from "@/lib/validations";
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!id) throw new NotFoundError("Account");
 
@@ -31,10 +28,7 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function PUT(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!id) throw new NotFoundError("Account");
 
@@ -43,8 +37,7 @@ export async function PUT(
     const body = await request.json();
 
     const validatedData = AccountSchema.partial().safeParse(body);
-    if (!validatedData.success)
-      throw new ValidationError(validatedData.error.flatten().fieldErrors);
+    if (!validatedData.success) throw new ValidationError(validatedData.error.flatten().fieldErrors);
 
     const updatedAccount = await Account.findByIdAndUpdate(id, validatedData, {
       new: true,
@@ -63,10 +56,7 @@ export async function PUT(
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> }
-) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   if (!id) throw new NotFoundError("Account");
 
@@ -76,10 +66,7 @@ export async function DELETE(
     const deletedAccount = await Account.findByIdAndDelete(id);
     if (!deletedAccount) throw new NotFoundError("Account");
 
-    return NextResponse.json(
-      { success: true, data: deletedAccount },
-      { status: 204 }
-    );
+    return NextResponse.json({ success: true, data: deletedAccount }, { status: 204 });
   } catch (error) {
     return handleError(error, "api") as APIErrorResponse;
   }

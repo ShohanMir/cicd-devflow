@@ -47,10 +47,7 @@ const SaveQuestion = ({ questionId, hasSavedQuestionPromise }: Props) => {
     } catch (error) {
       toast({
         title: "Error",
-        description:
-          error instanceof Error
-            ? error.message
-            : "Something went wrong. Please try again.",
+        description: error instanceof Error ? error.message : "Something went wrong. Please try again.",
         variant: "destructive",
       });
     } finally {

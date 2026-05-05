@@ -33,10 +33,7 @@ const Page = async ({ searchParams }: RouteParams) => {
           otherClasses="flex-1"
         />
 
-        <CommonFilter
-          filters={UserFilters}
-          otherClasses="min-h-[56px] sm:min-w-[170px]"
-        />
+        <CommonFilter filters={UserFilters} otherClasses="min-h-[56px] sm:min-w-[170px]" />
       </div>
 
       <DataRenderer
@@ -53,11 +50,7 @@ const Page = async ({ searchParams }: RouteParams) => {
         )}
       />
 
-      <Pagination
-        page={page}
-        isNext={isNext || false}
-        containerClasses="mt-10"
-      />
+      <Pagination page={page} isNext={isNext || false} containerClasses="mt-10" />
     </>
   );
 };

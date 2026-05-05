@@ -13,11 +13,7 @@ const ProfileLink = ({ imgUrl, href, title }: ProfileLinkProps) => {
       <Image src={imgUrl} alt="link icon" width={20} height={20} />
 
       {href ? (
-        <Link
-          href={href}
-          target="_blank"
-          className="paragraph-medium text-link-100"
-        >
+        <Link href={href} target="_blank" className="paragraph-medium text-link-100">
           {title}
         </Link>
       ) : (

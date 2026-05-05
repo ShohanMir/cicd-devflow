@@ -37,33 +37,14 @@ interface StateSkeletonProps {
   };
 }
 
-const StateSkeleton = ({
-  image,
-  title,
-  message,
-  button,
-}: StateSkeletonProps) => (
+const StateSkeleton = ({ image, title, message, button }: StateSkeletonProps) => (
   <div className="mt-16 flex w-full flex-col items-center justify-center sm:mt-20">
     <>
-      <Image
-        src={image.light}
-        alt={image.alt}
-        width={270}
-        height={200}
-        className="block object-contain dark:hidden"
-      />
-      <Image
-        src={image.dark}
-        alt={image.alt}
-        width={270}
-        height={200}
-        className="hidden object-contain dark:block"
-      />
+      <Image src={image.light} alt={image.alt} width={270} height={200} className="block object-contain dark:hidden" />
+      <Image src={image.dark} alt={image.alt} width={270} height={200} className="hidden object-contain dark:block" />
     </>
     <h2 className="h2-bold text-dark200_light900 mt-8">{title}</h2>
-    <p className="body-regular text-dark500_light700 my-3.5 max-w-md text-center">
-      {message}
-    </p>
+    <p className="body-regular text-dark500_light700 my-3.5 max-w-md text-center">{message}</p>
     {button && (
       <Link href={button.href}>
         <Button className="paragraph-medium bg-primary-500 text-light-900 hover:bg-primary-500 mt-5 min-h-[46px] rounded-lg px-4 py-3">
@@ -74,13 +55,7 @@ const StateSkeleton = ({
   </div>
 );
 
-const DataRenderer = <T,>({
-  success,
-  error,
-  data,
-  empty = DEFAULT_EMPTY,
-  render,
-}: Props<T>) => {
+const DataRenderer = <T,>({ success, error, data, empty = DEFAULT_EMPTY, render }: Props<T>) => {
   if (!success) {
     return (
       <StateSkeleton
@@ -90,11 +65,7 @@ const DataRenderer = <T,>({
           alt: "Error illustration",
         }}
         title={error?.message || DEFAULT_ERROR.title}
-        message={
-          error?.details
-            ? JSON.stringify(error.details, null, 2)
-            : DEFAULT_ERROR.message
-        }
+        message={error?.details ? JSON.stringify(error.details, null, 2) : DEFAULT_ERROR.message}
         button={empty.button}
       />
     );

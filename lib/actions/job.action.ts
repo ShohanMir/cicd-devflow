@@ -22,12 +22,9 @@ export const fetchJobs = async (filters: JobFilterParams) => {
     "X-RapidAPI-Host": "jsearch.p.rapidapi.com",
   };
 
-  const response = await fetch(
-    `https://jsearch.p.rapidapi.com/search?query=${query}&page=${page}`,
-    {
-      headers,
-    }
-  );
+  const response = await fetch(`https://jsearch.p.rapidapi.com/search?query=${query}&page=${page}`, {
+    headers,
+  });
 
   const result = await response.json();
 

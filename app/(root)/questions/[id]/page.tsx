@@ -19,9 +19,7 @@ import { getQuestion, incrementViews } from "@/lib/actions/question.action";
 import { hasVoted } from "@/lib/actions/vote.action";
 import { formatNumber, getTimeStamp } from "@/lib/utils";
 
-export async function generateMetadata({
-  params,
-}: RouteParams): Promise<Metadata> {
+export async function generateMetadata({ params }: RouteParams): Promise<Metadata> {
   const { id } = await params;
 
   const { success, data: question } = await getQuestion({ questionId: id });
@@ -84,9 +82,7 @@ const Page = async ({ params, searchParams }: RouteParams) => {
             />
 
             <Link href={ROUTES.PROFILE(question.author._id)}>
-              <p className="paragraph-semibold text-dark300_light700">
-                {question.author.name}
-              </p>
+              <p className="paragraph-semibold text-dark300_light700">{question.author.name}</p>
             </Link>
           </div>
 
@@ -102,16 +98,11 @@ const Page = async ({ params, searchParams }: RouteParams) => {
             </Suspense>
 
             <Suspense fallback={<div>...</div>}>
-              <SaveQuestion
-                questionId={question._id}
-                hasSavedQuestionPromise={hasSavedQuestionPromise}
-              />
+              <SaveQuestion questionId={question._id} hasSavedQuestionPromise={hasSavedQuestionPromise} />
             </Suspense>
           </div>
         </div>
-        <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full text-left">
-          {question.title}
-        </h2>
+        <h2 className="h2-semibold text-dark200_light900 mt-3.5 w-full text-left">{question.title}</h2>
       </div>
 
       <div className="mt-5 mb-8 flex flex-wrap gap-4">
@@ -144,12 +135,7 @@ const Page = async ({ params, searchParams }: RouteParams) => {
 
       <div className="mt-8 flex flex-wrap gap-2">
         {question.tags.map((tag: Tag) => (
-          <TagCard
-            key={tag._id}
-            _id={tag._id as string}
-            name={tag.name}
-            compact
-          />
+          <TagCard key={tag._id} _id={tag._id as string} name={tag.name} compact />
         ))}
       </div>
 
@@ -165,11 +151,7 @@ const Page = async ({ params, searchParams }: RouteParams) => {
       </section>
 
       <section className="my-5">
-        <AnswerForm
-          questionId={question._id}
-          questionTitle={question.title}
-          questionContent={question.content}
-        />
+        <AnswerForm questionId={question._id} questionTitle={question.title} questionContent={question.content} />
       </section>
     </>
   );

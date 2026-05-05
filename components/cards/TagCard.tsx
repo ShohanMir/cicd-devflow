@@ -16,16 +16,7 @@ interface Props {
   handleRemove?: () => void;
 }
 
-const TagCard = ({
-  _id,
-  name,
-  questions,
-  showCount,
-  compact,
-  remove,
-  isButton,
-  handleRemove,
-}: Props) => {
+const TagCard = ({ _id, name, questions, showCount, compact, remove, isButton, handleRemove }: Props) => {
   const iconClass = getDeviconClassName(name);
   const iconDescription = getTechDescription(name);
 
@@ -49,9 +40,7 @@ const TagCard = ({
         )}
       </Badge>
 
-      {showCount && (
-        <p className="small-medium text-dark500_light700">{questions}</p>
-      )}
+      {showCount && <p className="small-medium text-dark500_light700">{questions}</p>}
     </>
   );
 
@@ -61,11 +50,7 @@ const TagCard = ({
         {Content}
       </button>
     ) : (
-      <Link
-        href={`/tags/${_id}`}
-        key={_id}
-        className="flex items-center justify-between gap-2"
-      >
+      <Link href={`/tags/${_id}`} key={_id} className="flex items-center justify-between gap-2">
         {Content}
       </Link>
     );
@@ -80,14 +65,10 @@ const TagCard = ({
           </div>
           <i className={cn(iconClass, "text-2xl")} aria-hidden="true" />
         </div>
-        <p className="small-regular text-dark500_light700 mt-5 line-clamp-3 w-full">
-          {iconDescription}
-        </p>
+        <p className="small-regular text-dark500_light700 mt-5 line-clamp-3 w-full">{iconDescription}</p>
 
         <p className="small-medium text-dark400_light500 mt-3.5">
-          <span className="body-semibold primary-text-gradient mr-2.5">
-            {questions}+
-          </span>
+          <span className="body-semibold primary-text-gradient mr-2.5">{questions}+</span>
           Questions
         </p>
       </article>

@@ -38,9 +38,7 @@ export async function POST(request: Request) {
     });
 
     if (existingAccount) {
-      throw new ForbiddenError(
-        "An account with this provider and providerAccountId already exists"
-      );
+      throw new ForbiddenError("An account with this provider and providerAccountId already exists");
     }
 
     const newAccount = Account.create(validatedData);

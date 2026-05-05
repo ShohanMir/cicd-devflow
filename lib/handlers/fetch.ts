@@ -11,15 +11,8 @@ function isError(error: unknown): error is Error {
   return error instanceof Error;
 }
 
-export async function fetchHandler<T>(
-  url: string,
-  options: FetchOptions = {}
-): Promise<ActionResponse<T>> {
-  const {
-    timeout = 100000,
-    headers: customHeaders = {},
-    ...restOptions
-  } = options;
+export async function fetchHandler<T>(url: string, options: FetchOptions = {}): Promise<ActionResponse<T>> {
+  const { timeout = 100000, headers: customHeaders = {}, ...restOptions } = options;
 
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
@@ -42,10 +35,7 @@ export async function fetchHandler<T>(
     clearTimeout(id); // Clear the timeout on successful fetch
 
     if (!response.ok) {
-      throw new RequestError(
-        response.status,
-        `HTTP error! status: ${response.status}`
-      );
+      throw new RequestError(response.status, `HTTP error! status: ${response.status}`);
     }
 
     return await response.json();

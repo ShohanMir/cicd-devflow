@@ -4,13 +4,7 @@ import Link from "next/link";
 
 import { auth, signOut } from "@/auth";
 import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import ROUTES from "@/constants/routes";
 
 import NavLinks from "./NavLinks";
@@ -31,19 +25,11 @@ const MobileNavigation = async () => {
         />
       </SheetTrigger>
 
-      <SheetContent
-        side="left"
-        className="background-light900_dark200 border-none"
-      >
+      <SheetContent side="left" className="background-light900_dark200 border-none">
         <SheetTitle className="hidden">Navigation</SheetTitle>
 
         <Link href={ROUTES.HOME} className="flex items-center gap-1">
-          <Image
-            src="/images/site-logo.svg"
-            width={23}
-            height={23}
-            alt="Dev Overflow Logo"
-          />
+          <Image src="/images/site-logo.svg" width={23} height={23} alt="Dev Overflow Logo" />
 
           <p className="h2-bold text-dark100_light900 font-space-grotesk">
             Dev<span className="text-primary-500">Overflow</span>
@@ -66,10 +52,7 @@ const MobileNavigation = async () => {
                     await signOut();
                   }}
                 >
-                  <Button
-                    type="submit"
-                    className="base-medium w-fit bg-transparent! px-4 py-3"
-                  >
+                  <Button type="submit" className="base-medium w-fit bg-transparent! px-4 py-3">
                     <LogOut className="size-5 text-black dark:text-white" />
                     <span className="text-dark300_light900">Logout</span>
                   </Button>

@@ -67,16 +67,12 @@ const GlobalResult = () => {
       <div className="bg-light-700/50 dark:bg-dark-500/50 my-5 h-[1px]" />
 
       <div className="space-y-5">
-        <p className="text-dark400_light900 paragraph-semibold px-5">
-          Top Match
-        </p>
+        <p className="text-dark400_light900 paragraph-semibold px-5">Top Match</p>
 
         {isLoading ? (
           <div className="flex-center flex-col px-5">
             <ReloadIcon className="text-primary-500 my-2 h-10 w-10 animate-spin" />
-            <p className="text-dark200_light800 body-regular">
-              Browsing the whole database..
-            </p>
+            <p className="text-dark200_light800 body-regular">Browsing the whole database..</p>
           </div>
         ) : (
           <div className="flex flex-col gap-2">
@@ -96,21 +92,15 @@ const GlobalResult = () => {
                   />
 
                   <div className="flex flex-col">
-                    <p className="body-medium text-dark200_light800 line-clamp-1">
-                      {item.title}
-                    </p>
-                    <p className="text-light400_light500 small-medium mt-1 font-bold capitalize">
-                      {item.type}
-                    </p>
+                    <p className="body-medium text-dark200_light800 line-clamp-1">{item.title}</p>
+                    <p className="text-light400_light500 small-medium mt-1 font-bold capitalize">{item.type}</p>
                   </div>
                 </Link>
               ))
             ) : (
               <div className="flex-center flex-col px-5">
                 <p className="text-5xl">🫣</p>
-                <p className="text-dark200_light800 body-regular px-5 py-2.5">
-                  Oops, no results found
-                </p>
+                <p className="text-dark200_light800 body-regular px-5 py-2.5">Oops, no results found</p>
               </div>
             )}
           </div>

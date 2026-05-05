@@ -19,8 +19,7 @@ function Pagination({ page = 1, isNext, containerClasses }: Props) {
 
   // Navigation logic for handling page changes
   const handleNavigation = (type: "prev" | "next") => {
-    const nextPageNumber =
-      type === "prev" ? Number(page) - 1 : Number(page) + 1;
+    const nextPageNumber = type === "prev" ? Number(page) - 1 : Number(page) + 1;
     const value = nextPageNumber > 1 ? nextPageNumber.toString() : null;
 
     const newUrl = formUrlQuery({
@@ -36,12 +35,7 @@ function Pagination({ page = 1, isNext, containerClasses }: Props) {
   if (!isNext && Number(page) === 1) return null;
 
   return (
-    <div
-      className={cn(
-        "flex w-full items-center justify-center gap-2",
-        containerClasses
-      )}
-    >
+    <div className={cn("flex w-full items-center justify-center gap-2", containerClasses)}>
       {/* Render "Prev" button only if needed */}
       {Number(page) > 1 && (
         <Button

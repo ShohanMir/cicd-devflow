@@ -9,9 +9,7 @@ import action from "../handlers/action";
 import handleError from "../handlers/error";
 import { CreateInteractionSchema } from "../validations";
 
-export async function createInteraction(
-  params: CreateInteractionParams
-): Promise<ActionResponse<IInteractionDoc>> {
+export async function createInteraction(params: CreateInteractionParams): Promise<ActionResponse<IInteractionDoc>> {
   const validationResult = await action({
     params,
     schema: CreateInteractionSchema,
@@ -90,11 +88,7 @@ async function updateReputation(params: UpdateReputationParams) {
   }
 
   if (performerId === authorId) {
-    await User.findByIdAndUpdate(
-      performerId,
-      { $inc: { reputation: authorPoints } },
-      { session }
-    );
+    await User.findByIdAndUpdate(performerId, { $inc: { reputation: authorPoints } }, { session });
 
     return;
   }

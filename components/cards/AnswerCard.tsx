@@ -33,9 +33,7 @@ const AnswerCard = async ({
   });
 
   return (
-    <article
-      className={cn("light-border relative border-b py-10", containerClasses)}
-    >
+    <article className={cn("light-border relative border-b py-10", containerClasses)}>
       <span id={`answer-${_id}`} className="hash-span"></span>
 
       {showActionBtns && (
@@ -53,17 +51,11 @@ const AnswerCard = async ({
             className="size-5 rounded-full object-cover max-sm:mt-0.5"
           />
 
-          <Link
-            href={`/profile/${author._id}`}
-            className="flex flex-col sm:flex-row sm:items-center"
-          >
-            <p className="body-semibold text-dark300_light700">
-              {author.name ?? "Anonymous"}
-            </p>
+          <Link href={`/profile/${author._id}`} className="flex flex-col sm:flex-row sm:items-center">
+            <p className="body-semibold text-dark300_light700">{author.name ?? "Anonymous"}</p>
 
             <p className="small-regular text-light400_light500 mt-0.5 ml-0.5 line-clamp-1">
-              <span className="max-sm:hidden"> • </span> answered{" "}
-              {getTimeStamp(createdAt)}
+              <span className="max-sm:hidden"> • </span> answered {getTimeStamp(createdAt)}
             </p>
           </Link>
         </div>

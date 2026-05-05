@@ -9,10 +9,8 @@ import TagCard from "../cards/TagCard";
 import DataRenderer from "../DataRenderer";
 
 const RightSidebar = async () => {
-  const [
-    { success, data: hotQuestions, error },
-    { success: tagSuccess, data: tags, error: tagError },
-  ] = await Promise.all([getHotQuestions(), getTopTags()]);
+  const [{ success, data: hotQuestions, error }, { success: tagSuccess, data: tags, error: tagError }] =
+    await Promise.all([getHotQuestions(), getTopTags()]);
 
   return (
     <section className="custom-scrollbar background-light900_dark200 light-border shadow-light-300 sticky top-0 right-0 flex h-screen w-[350px] flex-col gap-6 overflow-y-auto border-l p-6 pt-36 max-xl:hidden dark:shadow-none">
@@ -35,9 +33,7 @@ const RightSidebar = async () => {
                   key={question._id}
                   className="flex cursor-pointer items-center justify-between gap-7"
                 >
-                  <p className="body-medium text-dark500_light700 line-clamp-2">
-                    {question.title}
-                  </p>
+                  <p className="body-medium text-dark500_light700 line-clamp-2">{question.title}</p>
 
                   <Image
                     src="/icons/chevron-right.svg"
@@ -67,14 +63,7 @@ const RightSidebar = async () => {
           render={(tags) => (
             <div className="mt-7 flex flex-col gap-4">
               {tags.map((tag) => (
-                <TagCard
-                  key={tag._id}
-                  _id={tag._id}
-                  name={tag.name}
-                  questions={tag.questions}
-                  showCount
-                  compact
-                />
+                <TagCard key={tag._id} _id={tag._id} name={tag.name} questions={tag.questions} showCount compact />
               ))}
             </div>
           )}

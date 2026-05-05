@@ -26,22 +26,14 @@ const LeftSidebar = async () => {
               await signOut();
             }}
           >
-            <Button
-              type="submit"
-              className="base-medium w-fit bg-transparent! px-4 py-3 shadow-none"
-            >
+            <Button type="submit" className="base-medium w-fit bg-transparent! px-4 py-3 shadow-none">
               <LogOut className="size-5 text-black dark:text-white" />
-              <span className="text-dark300_light900 max-lg:hidden">
-                Logout
-              </span>
+              <span className="text-dark300_light900 max-lg:hidden">Logout</span>
             </Button>
           </form>
         ) : (
           <>
-            <Button
-              className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none"
-              asChild
-            >
+            <Button className="small-medium btn-secondary min-h-[41px] w-full rounded-lg px-4 py-3 shadow-none" asChild>
               <Link href={ROUTES.SIGN_IN}>
                 <Image
                   src="/icons/account.svg"
@@ -50,9 +42,7 @@ const LeftSidebar = async () => {
                   height={20}
                   className="invert-colors lg:hidden"
                 />
-                <span className="primary-text-gradient max-lg:hidden">
-                  Log In
-                </span>
+                <span className="primary-text-gradient max-lg:hidden">Log In</span>
               </Link>
             </Button>
 
